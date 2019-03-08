@@ -20,6 +20,14 @@ func RequireU64(name string, r *http.Request, w http.ResponseWriter) (uint64, bo
 	}
 }
 
+func RequireString(name string, r *http.Request, w http.ResponseWriter) (string, bool) {
+	if r.URL.Query().Get(name) == "" {
+		return "", false
+	} else {
+		return r.URL.Query().Get(name), true
+	}
+}
+
 func SendResponse(resp interface{}, w http.ResponseWriter) {
 	res, er := json.Marshal(resp)
 	if er != nil {

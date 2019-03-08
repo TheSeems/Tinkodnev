@@ -4,11 +4,18 @@ import (
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	"strconv"
 	"tinkodnev/engine"
 )
 
 type MySQLMemDB struct {
 	Connection sqlx.DB
+}
+
+func (db *MySQLMemDB) Search(data string, limit int) ([]engine.Member, error) {
+	var items []engine.Member
+	err := db.Connection.Select(&items, "SELECT * FROM `Members` WHERE SecondName LIKE '%"+data+"%' OR FirstName LIKE '%"+data+"%' LIMIT "+strconv.Itoa(limit))
+	return items, err
 }
 
 func (db *MySQLMemDB) Get(id uint64) (engine.Member, error) {

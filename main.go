@@ -17,6 +17,7 @@ func loadDb() {
 
 func loadApi() {
 	engine.Router.HandleFunc("/api/get", api.GetMemberMethod)
+	engine.Router.HandleFunc("/api/search", api.SearchMemberMethod)
 }
 
 func main() {
