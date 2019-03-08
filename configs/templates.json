@@ -1,0 +1,5 @@
+{
+  "layout_path": "templates/layout",
+  "include_path": "templates/*",
+  "include_condition": "*.gohtml"
+}

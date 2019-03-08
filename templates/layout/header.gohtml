@@ -1,0 +1,29 @@
+{{ define "base" }}
+    <html lang="ru-RU">
+    <head>
+        <title>{{block "title" .}} {{end}}</title>
+
+        <!-- Styles -->
+        {{block "style" .}} {{end}}
+        <!-- /Styles -->
+
+    </head>
+
+    <body>
+
+    <!-- Content -->
+    {{template "userObjects" .}}
+    <!-- /Content -->
+
+    <!-- Footer -->
+    <footer>{{block "footer" .}} {{end}}</footer>
+    <!-- /Footer -->
+
+    <!-- Scripts -->
+    {{block "scripts" .}} {{end}}
+    <!-- /Scripts -->
+
+    </body>
+
+    </html>
+{{ end }}
