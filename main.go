@@ -4,7 +4,7 @@ import (
 	"tinkodnev/api"
 	"tinkodnev/engine"
 	"tinkodnev/storages"
-	"usadba/utils"
+	"tinkodnev/utils"
 )
 
 func loadDb() {
@@ -12,7 +12,7 @@ func loadDb() {
 	db := storages.MySQLMemDB{}
 	db.Init(dbConfig["user"].(string) + ":" + dbConfig["pass"].(string) +
 		"@(" + dbConfig["host"].(string) + ")/" + dbConfig["db"].(string))
-	engine.Database = &db;
+	engine.Database = &db
 }
 
 func loadApi() {
