@@ -9,7 +9,12 @@
 }
 
 .firstName, .secondName, .status {
-    font-size: 1.5em;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+#user_firstName, #user_secondName, #user_status {
+
+    font-weight: normal !important;
 }
 
 .firstName {

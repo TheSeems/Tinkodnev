@@ -3,6 +3,31 @@
 {{end}}
 
 {{define "userObjects"}}
-    <h1>Прветствую на аналоге полднева</h1>
-
+    <h1 id="main">Прветствую на аналоге полднева</h1>
+    <h2 style="text-align: center">Тудушник</h2>
+    <div class="wrap">
+        <div class="todo" style="display: block">
+            <ul>
+                <li>
+                    Сделать поиск по именам
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h2 style="text-align: center">Уже сделано</h2>
+    <div class="wrap">
+        <div class="done" style="display: block">
+            <ul>
+                <li>
+                    <a href="/view?id=1">Поиск по айди с минимальным фронтендом</a>
+                </li>
+                <li>
+                    <a href="/api/get?id=1">Апи</a> для получения инфы
+                </li>
+                <li>
+                    Информация вида: Фамилия, Имя, Статус
+                </li>
+            </ul>
+        </div>
+    </div>
 {{end}}

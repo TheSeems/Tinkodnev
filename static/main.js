@@ -1,4 +1,4 @@
-const ranks = {
+﻿const ranks = {
     0: "<span class='blacklist'>Черный список</span>",
     1: "<span class='student'>Ученик</span>",
     2: "<span class='teacher'>Преподаватель</span>",
@@ -34,8 +34,8 @@ function load(id) {
 
         document.getElementById("main").innerText = "Пользователь под айди " + id + ":";
         document.getElementById("info").style.display = "block";
-        document.getElementById("user.firstName").innerHTML = parsed["member"]["first_name"];
-        document.getElementById("user.secondName").innerHTML = parsed["member"]["second_name"];
-        document.getElementById("user.status").innerHTML = ranks[parsed["member"]["status"]];
+        document.getElementById("user_firstName").innerHTML = parsed["member"]["first_name"];
+        document.getElementById("user_secondName").innerHTML = parsed["member"]["second_name"];
+        document.getElementById("user_status").innerHTML = ranks[parsed["member"]["status"]];
     });
 }
