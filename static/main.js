@@ -35,6 +35,12 @@ function setOrRemovePhoto(element, remove, content) {
     }
 }
 
+document.onreadystatechange = function () {
+    let element = document.getElementById("search-field");
+    if (element != null)
+        element.value = "";
+};
+
 function load(id) {
     httpGetAsync("/api/get?id=" + id, "GET", function (json) {
         let parsed = JSON.parse(json);
