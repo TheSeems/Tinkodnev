@@ -33,18 +33,19 @@ function load(id) {
         }
 
         document.getElementById("main").innerText = "Пользователь под айди " + id + ":";
-        document.getElementById("info").style.display = "block";
+        if (parsed["member"]["patronymic"] !== " ")
+            document.getElementsByClassName("user_patronymic")[0].innerHTML = parsed["member"]["patronymic"];
+        else
+            document.getElementsByClassName("patronymic")[0].remove();
+
         document.getElementsByClassName("user_firstName")[0].innerHTML = parsed["member"]["first_name"];
         document.getElementsByClassName("user_secondName")[0].innerHTML = parsed["member"]["second_name"];
         document.getElementsByClassName("user_status")[0].innerHTML = ranks[parsed["member"]["status"]];
+        document.getElementById("info").style.display = "block";
     });
 }
 
 function find(query) {
-    if (query === "") {
-        document.getElementById("main").innerText = "Введите начало имени или фамилии";
-        return
-    }
     httpGetAsync("/api/search?query=" + query, "GET", function (json) {
         let parsed = JSON.parse(json);
         console.log(parsed);
@@ -57,7 +58,7 @@ function find(query) {
             else
                 document.getElementById("main").innerText = "ОШИБКА: " + parsed["error"];
         } else {
-            document.getElementById("main").innerText = "Найдено " + parsed["members"].length + " людей";
+            document.getElementById("main").innerText = "Найдено пользователей: " + parsed["members"].length;
             for (let loh in parsed["members"]) {
                 let i = parsed["members"][loh];
                 let li = document.createElement("li");

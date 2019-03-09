@@ -3,27 +3,29 @@
 {{end}}
 
 {{define "userObjects"}}
-    <h1 id="main">Прветствую на аналоге полднева</h1>
-    <h2 style="text-align: center">Поиск</h2>
+    <div class="wrap logo">
+        <img src="/static/img/funlogo.png"
+             alt="Лого Tinkoff" height="100" width="350">
+    </div>
+
+    <h1 id="main">Начните вводить :)</h1>
     <div class="wrap">
-        <input type="text" id="search-field" placeholder="Имя, фамилия">
+        <input type="text" id="search-field" placeholder="Имя/фамилия/отчество">
     </div>
 
     <div class="wrap">
         <ul id="list"></ul>
     </div>
 
-    <h2 style="text-align: center">Тудушник</h2>
-    <div class="wrap">
-        <div class="todo" style="display: block">
-            <ul>
-                <li>
-                    Чуть-чуть подкачать фронтенд
-                </li>
-            </ul>
-        </div>
+    <h1 style="text-align: center">Информация</h1>
+
+    <h3 style="text-align: center; margin-top: 5vh">Куда я попал(а)?</h3>
+    <div class="wrap" style="text-align: center">
+        Это почти тоже самое, что Полднев для ЛКШ,
+        только Tinkodnev для кружков Тинькофф
     </div>
-    <h2 style="text-align: center">Уже сделано</h2>
+
+    <h3 style="text-align: center; margin-top: 5vh">Уже сделано</h3>
     <div class="wrap">
         <div class="done" style="display: block">
             <ul>
@@ -37,13 +39,39 @@
                     <a href="/api/search?query=алексей">Апи</a> для поиска
                 </li>
                 <li>
-                    Информация вида: Фамилия, Имя, Статус
+                    Информация вида: Фамилия, Имя, Отчество, Статус
                 </li>
                 <li>
-                    Минимальный поиск либо по имени либо по фамилии
+                    Более менее нормальный поиск (возможно есть баги)
                     (см поле в самом верху)
                 </li>
             </ul>
+        </div>
+    </div>
+
+    <h3 style="text-align: center; margin-top: 3vh">Тудушник</h3>
+    <div class="wrap">
+        <div class="todo" style="display: block">
+            <ul>
+                <li>
+                    Даже хз
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="margin-top: 5vh">
+        <div class="wrap">
+            Автор:&nbsp;<a href="//vk.com/theseems">theseems</a>
+        </div>
+        <div class="wrap">
+            GitHub:&nbsp;<a href="https://github.com/TheSeems/tinkodnev">TheSeems/tinkodnev</a>
+        </div>
+        <div class="wrap" style="text-align: center">
+            Сайт не несет никакой другой цели кроме как предоставить неофициальную информацию о участниках кружка Тинькофф
+        </div>
+        <div class="wrap">
+            09.03.2019
         </div>
     </div>
 
@@ -54,11 +82,11 @@
             if (field.value !== "") {
                 if (field.value !== previous)
                     find(field.value);
-                previous = field.value;
-            } else {
-                document.getElementById("main").innerText = "Введите начало имени или фамилии";
+            } else if (previous !== "") {
+                document.getElementById("main").innerText = "Начните вводить :)";
                 document.getElementById("list").innerHTML = "";
             }
+            previous = field.value;
         }, 200, 50);
     </script>
 {{end}}

@@ -4,16 +4,20 @@
     justify-content: center;
 }
 
+.logo {
+    margin-top: 3vh;
+}
+
 .info {
     max-width: 50%;
 }
 
-.firstName, .secondName, .status {
+.firstName, .secondName, .status, .patronymic {
     font-size: 1.3em;
     font-weight: bold;
 }
 
-.user_firstName, .user_secondName, .user_status {
+.user_firstName, .user_secondName, .user_status, .user_patronymic {
     font-weight: normal !important;
 }
 
@@ -31,8 +35,12 @@
 
 #main {
     text-align: center;
-    margin-top: 5vh;
+    margin-top: 10vh;
     margin-bottom: 5vh;
+}
+
+#list {
+    margin-bottom: 50vh;
 }
 
 .student {
