@@ -78,7 +78,7 @@
     <script>
         let field = document.getElementById("search-field");
         let previous = "";
-        setInterval(function () {
+        let func = function () {
             if (field.value === "") {
                 if (document.getElementById("main").innerText !== "Начните вводить :)") {
                     document.getElementById("main").innerText = "Начните вводить :)";
@@ -89,6 +89,8 @@
                     find(field.value);
             }
             previous = field.value;
-        }, 200, 50);
+        };
+
+        setInterval(func, 30, 70);
     </script>
 {{end}}

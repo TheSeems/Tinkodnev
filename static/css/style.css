@@ -29,6 +29,10 @@
     margin-top: 1vh;
 }
 
+* {
+    transition: ease-in-out 0.3s;
+}
+
 .status {
     margin-top: 2vh;
 }
