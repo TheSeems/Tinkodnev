@@ -33,14 +33,21 @@ function load(id) {
         }
 
         document.getElementById("main").innerText = "Пользователь под айди " + id + ":";
-        if (parsed["member"]["patronymic"] !== " ")
-            document.getElementsByClassName("user_patronymic")[0].innerHTML = parsed["member"]["patronymic"];
+        let member = parsed["member"];
+
+        if (member["patronymic"] !== " ")
+            document.getElementsByClassName("user_patronymic")[0].innerHTML = member["patronymic"];
         else
             document.getElementsByClassName("patronymic")[0].remove();
 
-        document.getElementsByClassName("user_firstName")[0].innerHTML = parsed["member"]["first_name"];
-        document.getElementsByClassName("user_secondName")[0].innerHTML = parsed["member"]["second_name"];
-        document.getElementsByClassName("user_status")[0].innerHTML = ranks[parsed["member"]["status"]];
+        if (member["photo"] !== "")
+            document.getElementsByClassName("user_photo")[0].src = member["photo"];
+        else
+            document.getElementsByClassName("user_photo")[0].remove();
+
+        document.getElementsByClassName("user_firstName")[0].innerHTML = member["first_name"];
+        document.getElementsByClassName("user_secondName")[0].innerHTML = member["second_name"];
+        document.getElementsByClassName("user_status")[0].innerHTML = ranks[member["status"]];
         document.getElementById("info").style.display = "block";
     });
 }
@@ -59,10 +66,11 @@ function find(query) {
                 document.getElementById("main").innerText = "ОШИБКА: " + parsed["error"];
         } else {
             document.getElementById("main").innerText = "Найдено пользователей: " + parsed["members"].length;
-            for (let loh in parsed["members"]) {
-                let i = parsed["members"][loh];
+            for (let index in parsed["members"]) {
+                let i = parsed["members"][index];
                 let li = document.createElement("li");
                 let element = document.createElement("user");
+
                 element.innerHTML = "<span class = 'user_firstName'>" + i["first_name"] + "</span> <span class = 'user_secondName'>"
                     + i["second_name"] + "</span> <span class='user_status'>" + ranks[i["status"]] + "</span> (<a href='/view?id=" + i["id"] + "'>" + i["id"] + "</a>)";
                 li.appendChild(element);

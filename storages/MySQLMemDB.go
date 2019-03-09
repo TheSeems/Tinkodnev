@@ -29,7 +29,8 @@ func (db *MySQLMemDB) Get(id uint64) (engine.Member, error) {
 }
 
 func (db *MySQLMemDB) Add(member engine.Member) (uint64, error) {
-	res, err := db.Connection.Exec("INSERT INTO `Members` (Id, FirstName, SecondName, Patronymic, Status) VALUES (DEFAULT, ?, ?, ?, ?)", member.FirstName, member.SecondName, member.Patronymic, member.Status)
+	res, err := db.Connection.Exec("INSERT INTO `Members` (Id, FirstName, SecondName, Patronymic, Photo, Status) VALUES (DEFAULT, ?, ?, ?, ?, ?)",
+		member.FirstName, member.SecondName, member.Patronymic, member.Photo, member.Status)
 	lastId, _ := res.LastInsertId()
 	if err != nil {
 		return 0, err
@@ -56,7 +57,7 @@ func (db *MySQLMemDB) Init(data string) {
 
 	db.Connection.SetMaxIdleConns(0)
 	_, _ = db.Connection.Exec(
-		"CREATE TABLE IF NOT EXISTS `Members` (Id BIGINT PRIMARY KEY AUTO_INCREMENT, FirstName VARCHAR(16) NOT NULL, SecondName VARCHAR(16) NOT NULL, Patronymic VARCHAR(16), Status INTEGER(10))")
+		"CREATE TABLE IF NOT EXISTS `Members` (Id BIGINT PRIMARY KEY AUTO_INCREMENT, FirstName VARCHAR(16) NOT NULL, SecondName VARCHAR(16) NOT NULL, Patronymic VARCHAR(16), Photo VARCHAR(100), Status INTEGER(1))")
 	if err != nil {
 		fmt.Println("[MemDB/MySQL] WARNING: Cannot execute init statement")
 	}
