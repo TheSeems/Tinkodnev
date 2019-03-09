@@ -4,12 +4,21 @@
 
 {{define "userObjects"}}
     <h1 id="main">Прветствую на аналоге полднева</h1>
+    <h2 style="text-align: center">Поиск</h2>
+    <div class="wrap">
+        <input type="text" id="search-field" placeholder="Имя, фамилия">
+    </div>
+
+    <div class="wrap">
+        <ul id="list"></ul>
+    </div>
+
     <h2 style="text-align: center">Тудушник</h2>
     <div class="wrap">
         <div class="todo" style="display: block">
             <ul>
                 <li>
-                    Сделать поиск по именам
+                    Чуть-чуть подкачать фронтенд
                 </li>
             </ul>
         </div>
@@ -19,15 +28,37 @@
         <div class="done" style="display: block">
             <ul>
                 <li>
-                    <a href="/view?id=1">Поиск по айди с минимальным фронтендом</a>
+                    <a href="/view?id=1">Просмотр по айди с минимальным фронтендом</a>
                 </li>
                 <li>
-                    <a href="/api/get?id=1">Апи</a> для получения инфы
+                    <a href="/api/get?id=1">Апи</a> для получения инфы о пользователе по id
+                </li>
+                <li>
+                    <a href="/api/search?query=алексей">Апи</a> для поиска
                 </li>
                 <li>
                     Информация вида: Фамилия, Имя, Статус
                 </li>
+                <li>
+                    Минимальный поиск либо по имени либо по фамилии
+                    (см поле в самом верху)
+                </li>
             </ul>
         </div>
     </div>
+
+    <script>
+        let field = document.getElementById("search-field");
+        let previous = "";
+        setInterval(function () {
+            if (field.value !== "") {
+                if (field.value !== previous)
+                    find(field.value);
+                previous = field.value;
+            } else {
+                document.getElementById("main").innerText = "Введите начало имени или фамилии";
+                document.getElementById("list").innerHTML = "";
+            }
+        }, 200, 50);
+    </script>
 {{end}}

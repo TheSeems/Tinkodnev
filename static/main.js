@@ -34,8 +34,39 @@ function load(id) {
 
         document.getElementById("main").innerText = "Пользователь под айди " + id + ":";
         document.getElementById("info").style.display = "block";
-        document.getElementById("user_firstName").innerHTML = parsed["member"]["first_name"];
-        document.getElementById("user_secondName").innerHTML = parsed["member"]["second_name"];
-        document.getElementById("user_status").innerHTML = ranks[parsed["member"]["status"]];
+        document.getElementsByClassName("user_firstName")[0].innerHTML = parsed["member"]["first_name"];
+        document.getElementsByClassName("user_secondName")[0].innerHTML = parsed["member"]["second_name"];
+        document.getElementsByClassName("user_status")[0].innerHTML = ranks[parsed["member"]["status"]];
+    });
+}
+
+function find(query) {
+    if (query === "") {
+        document.getElementById("main").innerText = "Введите начало имени или фамилии";
+        return
+    }
+    httpGetAsync("/api/search?query=" + query, "GET", function (json) {
+        let parsed = JSON.parse(json);
+        console.log(parsed);
+
+        let ul = document.getElementById("list");
+        ul.innerHTML = "";
+        if (parsed["success"] === false) {
+            if (parsed["error"] === "Not found")
+                document.getElementById("main").innerText = "Никого не найдено!";
+            else
+                document.getElementById("main").innerText = "ОШИБКА: " + parsed["error"];
+        } else {
+            document.getElementById("main").innerText = "Найдено " + parsed["members"].length + " людей";
+            for (let loh in parsed["members"]) {
+                let i = parsed["members"][loh];
+                let li = document.createElement("li");
+                let element = document.createElement("user");
+                element.innerHTML = "<span class = 'user_firstName'>" + i["first_name"] + "</span> <span class = 'user_secondName'>"
+                    + i["second_name"] + "</span> <span class='user_status'>" + ranks[i["status"]] + "</span> (<a href='/view?id=" + i["id"] + "'>" + i["id"] + "</a>)";
+                li.appendChild(element);
+                ul.appendChild(li);
+            }
+        }
     });
 }

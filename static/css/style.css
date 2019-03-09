@@ -12,8 +12,8 @@
     font-size: 1.3em;
     font-weight: bold;
 }
-#user_firstName, #user_secondName, #user_status {
 
+.user_firstName, .user_secondName, .user_status {
     font-weight: normal !important;
 }
 
@@ -36,5 +36,13 @@
 }
 
 .student {
-    color: aquamarine;
+    color: dodgerblue;
+}
+
+.teacher {
+    color: darkorange;
+}
+
+.organizer {
+    color: orangered;;
 }
