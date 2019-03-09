@@ -79,14 +79,16 @@
         let field = document.getElementById("search-field");
         let previous = "";
         setInterval(function () {
-            if (field.value !== "") {
+            if (field.value === "") {
+                if (document.getElementById("main").innerText !== "Начните вводить :)") {
+                    document.getElementById("main").innerText = "Начните вводить :)";
+                    document.getElementById("list").innerHTML = "";
+                }
+            } else {
                 if (field.value !== previous)
                     find(field.value);
-            } else if (previous !== "") {
-                document.getElementById("main").innerText = "Начните вводить :)";
-                document.getElementById("list").innerHTML = "";
             }
             previous = field.value;
-        }, 200, 100);
+        }, 200, 50);
     </script>
 {{end}}
