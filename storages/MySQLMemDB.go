@@ -14,7 +14,8 @@ type MySQLMemDB struct {
 
 func (db *MySQLMemDB) Search(data string, limit int) ([]engine.Member, error) {
 	var items []engine.Member
-	err := db.Connection.Select(&items, "SELECT * FROM `Members` WHERE SecondName LIKE '%"+data+"%' OR FirstName LIKE '%"+data+"%' LIMIT "+strconv.Itoa(limit))
+	query := "SELECT * FROM `Members` WHERE SecondName LIKE '%" + data + "%' OR FirstName LIKE '%" + data + "%' OR concat(FirstName, ' ', SecondName) LIKE '%" + data + "%' LIMIT " + strconv.Itoa(limit)
+	err := db.Connection.Select(&items, query)
 	return items, err
 }
 
