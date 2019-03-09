@@ -30,7 +30,6 @@ var SearchMemberMethod = func(w http.ResponseWriter, r *http.Request) {
 				resp.Success = false
 				resp.Error = "Not found"
 			} else {
-				fmt.Print(res)
 				resp.Success = true
 				resp.Items = res
 			}
