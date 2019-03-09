@@ -12,6 +12,10 @@
     max-width: 50%;
 }
 
+.addit {
+    font-size: 2rem;
+}
+
 .firstName, .secondName, .status, .patronymic {
     font-size: 1.3em;
     font-weight: bold;
@@ -46,7 +50,7 @@
 
 #main {
     text-align: center;
-    margin-top: 10vh;
+    margin-top: 18vh;
     font-size: 4em;
     margin-bottom: 5vh;
 }
