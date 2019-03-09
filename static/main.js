@@ -19,6 +19,22 @@ function httpGetAsync(url, method, callback) {
     xmlHttp.send(null);
 }
 
+function setOrRemove(element, remove, content) {
+    if (content == null || content === "") {
+        document.getElementsByClassName(remove)[0].remove();
+    } else {
+        document.getElementsByClassName(element)[0].innerHTML = content;
+    }
+}
+
+function setOrRemovePhoto(element, remove, content) {
+    if (content == null || content === "") {
+        document.getElementsByClassName(remove)[0].remove();
+    } else {
+        document.getElementsByClassName(element)[0].src = content;
+    }
+}
+
 function load(id) {
     httpGetAsync("/api/get?id=" + id, "GET", function (json) {
         let parsed = JSON.parse(json);
@@ -35,19 +51,11 @@ function load(id) {
         document.getElementById("main").innerText = "Пользователь под айди " + id + ":";
         let member = parsed["member"];
 
-        if (member["patronymic"] !== "")
-            document.getElementsByClassName("user_patronymic")[0].innerHTML = member["patronymic"];
-        else
-            document.getElementsByClassName("patronymic")[0].remove();
-
-        if (member["photo"] !== "")
-            document.getElementsByClassName("user_photo")[0].src = member["photo"];
-        else
-            document.getElementsByClassName("user_photo")[0].remove();
-
-        document.getElementsByClassName("user_firstName")[0].innerHTML = member["first_name"];
-        document.getElementsByClassName("user_secondName")[0].innerHTML = member["second_name"];
-        document.getElementsByClassName("user_status")[0].innerHTML = ranks[member["status"]];
+        setOrRemovePhoto("user_photo", "photo", member["photo"]);
+        setOrRemove("user_patronymic", "patronymic", member["patronymic"]);
+        setOrRemove("user_firstName", "firstName", member["first_name"]);
+        setOrRemove("user_secondName", "secondName", member["second_name"]);
+        setOrRemove("user_status", "status", ranks[member["status"]]);
         document.getElementById("info").style.display = "block";
     });
 }
