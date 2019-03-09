@@ -35,7 +35,7 @@ function load(id) {
         document.getElementById("main").innerText = "Пользователь под айди " + id + ":";
         let member = parsed["member"];
 
-        if (member["patronymic"] !== " ")
+        if (member["patronymic"] !== "")
             document.getElementsByClassName("user_patronymic")[0].innerHTML = member["patronymic"];
         else
             document.getElementsByClassName("patronymic")[0].remove();
