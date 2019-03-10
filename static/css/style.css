@@ -8,16 +8,20 @@
     margin-top: 3vh;
 }
 
-.info {
+.info, #info {
     max-width: 50%;
+    font-size: 1.56em;
 }
 
 .addit {
-    font-size: 2rem;
+    font-size: 1.6rem;
+}
+
+html, body {
+    overflow-x: hidden;
 }
 
 .firstName, .secondName, .status, .patronymic {
-    font-size: 1.3em;
     font-weight: bold;
 }
 
@@ -35,9 +39,9 @@
 
 #search-field {
     padding: 10px;
-    width: 40%;
-    font-size: 1.8em;
+    min-width: 40%;
     margin-bottom: 5vh;
+    font-size: 1.6em;
 }
 
 * {
@@ -50,14 +54,13 @@
 
 #main {
     text-align: center;
-    margin-top: 18vh;
-    font-size: 4em;
+    margin-top: 12vh;
     margin-bottom: 5vh;
 }
 
 #list {
-    font-size: 1.6em;
-    margin-bottom: 70vh;
+    margin-bottom: 60vh;
+    font-size: 111%;
 }
 
 .student {
@@ -69,5 +72,5 @@
 }
 
 .organizer {
-    color: orangered;;
+    color: orangered;
 }
